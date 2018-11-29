@@ -75,31 +75,26 @@ function addAxesAndLegend (svg, xAxis, yAxis, margin, chartWidth, chartHeight) {
 }
 
 function drawPaths (svg, data, x, y) {
+    var interpolate = 'cardinal';
   var upperOuterArea = d3.svg.area()
-    .interpolate('basis')
+    .interpolate(interpolate)
     .x (function (d) { return x(d.date) || 1; })
     .y0(function (d) { return y(d.pct95); })
     .y1(function (d) { return y(d.pct75); });
 
   var upperInnerArea = d3.svg.area()
-    .interpolate('basis')
+    .interpolate(interpolate)
     .x (function (d) { return x(d.date) || 1; })
     .y0(function (d) { return y(d.pct75); })
-    .y1(function (d) { return y(d.pct50); });
+    .y1(function (d) { return y(d.pct25); });
 
   var medianLine = d3.svg.line()
-    .interpolate('basis')
+    .interpolate(interpolate)
     .x(function (d) { return x(d.date); })
     .y(function (d) { return y(d.pct50); });
 
-  var lowerInnerArea = d3.svg.area()
-    .interpolate('basis')
-    .x (function (d) { return x(d.date) || 1; })
-    .y0(function (d) { return y(d.pct50); })
-    .y1(function (d) { return y(d.pct25); });
-
   var lowerOuterArea = d3.svg.area()
-    .interpolate('basis')
+    .interpolate(interpolate)
     .x (function (d) { return x(d.date) || 1; })
     .y0(function (d) { return y(d.pct25); })
     .y1(function (d) { return y(d.pct05); });
@@ -122,11 +117,6 @@ function drawPaths (svg, data, x, y) {
     .attr('clip-path', 'url(#rect-clip)');
 
   svg.append('path')
-    .attr('class', 'area lower inner')
-    .attr('d', lowerInnerArea)
-    .attr('clip-path', 'url(#rect-clip)');
-
-  svg.append('path')
     .attr('class', 'median-line')
     .attr('d', medianLine)
     .attr('clip-path', 'url(#rect-clip)');
@@ -136,7 +126,7 @@ function addMarker (marker, svg, chartHeight, x) {
   var radius = 32,
       xPos = x(marker.date) - radius - 3,
       yPosStart = chartHeight - radius - 3,
-      yPosEnd = (marker.type === 'Client' ? 80 : 160) + radius - 3;
+      yPosEnd = 10 + radius - 3;
 
   var markerG = svg.append('g')
     .attr('class', 'marker '+marker.type.toLowerCase())
