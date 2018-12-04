@@ -14,62 +14,87 @@
     </head>
 
     <body>
-      <style>
-        .sidebar {
-          background-color: #3D98C6;
-          position: fixed;
-          top: 0;
-          right: -100px;
-          width: 500px;
-          height: 100vh;
-          transform:skewX(-10deg);
-        }
-        .house-container {
-          position: fixed;
-          top: 50%;
-          right: 170px;
-          margin-top: -100px;
-          perspective: 1000px;
+        <style>
+         body {
+             font-family: proxima-nova, open-sans, helvetica, sans-serif;
+         }
+         .hero {
+             padding-top: 50px;
+             padding-bottom: 50px;
+             padding-left: calc((100% - 980px) * 0.5);
+         }
+         .content {
+             width: 600px;
+         }
+         .hero-dark {
+             background-color: #143342;
+             color: white;
+         }
+         .sidebar {
+             background-color: #3D98C6;
+             position: fixed;
+             top: 0;
+             right: -100px;
+             width: 500px;
+             height: 100vh;
+             transform:skewX(-10deg);
+         }
+         .house-container {
+             position: fixed;
+             top: 50%;
+             right: 170px;
+             margin-top: -100px;
+             perspective: 1000px;
 
-        }
-        .house {
-          height: 200px;
-          transform: rotateY(30deg);
-          padding: 8px;
-          background-color: white;
-          border-radius: 5px;
-          box-shadow: -6px 6px 2px -3px  rgba(100,100,100,.3);
-        }
-        .content {
-          width: calc(100vw - 500px)
-        }
-        h3 {
-          margin: 60px 10px;
-        }
-        p {
-          margin: 10px 10px;
-          padding-bottom: 60px;
-        }
-      </style>
-      <div class="sidebar">
+         }
+         .house {
+             height: 200px;
+             padding: 8px;
+             background-color: white;
+             border-radius: 5px;
+             box-shadow: -6px 6px 2px -3px  rgba(100,100,100,.3);
+             animation-name: floating;
+             animation-duration: 3s;
+             animation-iteration-count: infinite;
+             animation-timing-function: ease-in-out;
+             margin-left:30px;
+             margin-top: 5px;
+         }
+         @keyframes floating {
+             from { transform: translate(0, 0px) rotateY(30deg); }
+             40% { transform: translate(0, 4px) rotateY(30deg); }
+             to { transform: translate(0, 0px) rotateY(30deg); }
+         }
+        </style>
+        <div class="sidebar">
       </div>
       <div class="house-container">
         <img class="house" src="house.jpg"/>
       </div>
-      <div class="content">
-        <h1>Free House!</h1>
-        <p>Titanic Design is giving away a free San Fransisco home with every 3d print</p>
-        <button href="/contact">Get Your Free Home Today!</button>
-        <h3>RISING HOME PRICES GOT YOU DOWN?</h3>
-        <p>The median home price in San Fransisco is over 1.3 Million dollars with a 7.5% increase expected in 2019.</p>
-        <p>Enough is enough. This is why Titanic Design is taking matters into our own hands and giving away San Fransisco houses for free with every 3d print</p>
-        <p>Why pay millions of dollars for your next home</p>
-        <h3>Not in need of 3d printing?
-Still want a house?
-Refer a friend who ends up printing with us and we will mail you both a house</h3>
+        <div class="hero">
+            <div class="content">
+                <h1>Free House!</h1>
+                <p>Titanic Design is giving away a free San Fransisco home with every 3d print</p>
+                <button href="/contact">Get Your Free Home Today!</button>
+            </div>
+        </div>
+        <div class="hero hero-dark">
+            <div class="content">
+                <h3>RISING HOME PRICES GOT YOU DOWN?</h3>
+                <p>The median home price in San Fransisco is over 1.3 Million dollars with a 7.5% increase expected in 2019.</p>
+                <p>Enough is enough. This is why Titanic Design is taking matters into our own hands and giving away San Fransisco houses for free with every 3d print</p>
+                <p>Why pay millions of dollars for your next home</p>
+            </div>
+        </div>
+        <div class="hero">
+            <div class="content">
+            <h3>Not in need of 3d printing?
+                Still want a house?
+                Refer a friend who ends up printing with us and we will mail you both a house</h3>
+            <button href="/contact">Get Your Free Home Today!</button>
+        </div>
+        </div>
         <div class="graph"></div>
-      </div>
-      <button href="/contact">Get Your Free Home Today!</button>
 
     </body>
 
